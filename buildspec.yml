@@ -3,19 +3,20 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 14
+      nodejs: 18
     commands:
-      - npm install -g yarn
-      - yarn install
+      - npm install
 
   build:
     commands:
-      - yarn build
+      - npm run build
+  post_build:
+    commands:
+     - aws s3 sync build/CodePipeline-AWS/ s3://gentbucket --delete  
 
 artifacts:
   files:
     - '**/*'
-
 cache:
   paths:
     - node_modules/
