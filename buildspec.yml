@@ -3,13 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
+      nodejs: 14
     commands:
-      - npm install
+      - npm install -g yarn
+      - yarn install
 
   build:
     commands:
-      - npm run build
+      - yarn build
 
 artifacts:
   files:
@@ -18,4 +19,3 @@ artifacts:
 cache:
   paths:
     - node_modules/
-
